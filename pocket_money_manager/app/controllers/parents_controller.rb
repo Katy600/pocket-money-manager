@@ -4,7 +4,7 @@ class ParentsController < ApplicationController
   end
 
   def new
-    
+    @parent = Parent.new
   end
 
 end
