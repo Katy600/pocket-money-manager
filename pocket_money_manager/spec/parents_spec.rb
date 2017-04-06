@@ -50,4 +50,16 @@ feature 'User can sign in' do
     end
   end
 
+    context 'User is signed in' do
+      it 'should display a sign in button' do
+        visit '/parents'
+          expect(page).to have_link('Sign in')
+      end
+
+      it 'will take the parent to a login page' do
+        visit 'login/login'
+        expect(page).to have_content('Email')
+        expect(page).to have_content('Password')
+      end
+    end
 end
