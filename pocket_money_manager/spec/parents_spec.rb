@@ -4,12 +4,12 @@ require "sign_up_helper"
 feature 'User can sign in' do
   context 'User is not signed in' do
     it 'should diplay a sign up button' do
-      visit '/parents'
+      visit '/'
       expect(page).to have_link('Sign up')
     end
 
     it 'takes user to a registration page' do
-      visit '/parents'
+      visit '/parents/new'
       click_link 'Sign up'
       expect(page).to have_content('First name')
       expect(page).to have_content('Last name')
@@ -50,16 +50,4 @@ feature 'User can sign in' do
     end
   end
 
-    context 'User is signed in' do
-      it 'should display a sign in button' do
-        visit '/parents'
-          expect(page).to have_link('Sign in')
-      end
-
-      it 'will take the parent to a login page' do
-        visit 'login/login'
-        expect(page).to have_content('Email')
-        expect(page).to have_content('Password')
-      end
-    end
 end

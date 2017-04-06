@@ -1,5 +1,7 @@
 class ParentsController < ApplicationController
 
+  before_action :confirm_logged_in, :except => [:new, :create]
+
   def index
 
   end

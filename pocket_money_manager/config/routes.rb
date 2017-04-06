@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  root 'login#index'
+  get 'login/index'
   get 'login/login'
   post 'login/attempt_login'
-  get 'login/log_out'
+  get 'login/logout'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # root "parents#index"
   get 'parents' => 'parents#index'

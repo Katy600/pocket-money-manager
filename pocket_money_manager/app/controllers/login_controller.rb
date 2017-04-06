@@ -2,6 +2,9 @@ class LoginController < ApplicationController
   def menu
     @username = session[:first_name]
   end
+  
+  def index
+  end
 
  def login
  end
