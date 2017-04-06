@@ -26,6 +26,32 @@ feature 'User can sign in' do
       click_button('Submit')
       expect(page).to have_content('Your account has been created')
     end
+
+    it 'will not save a user to the database if there are empty fields in the registration form' do
+      visit('/parents/new')
+      fill_in('parent[first_name]', with: 'Spongebob')
+      fill_in('parent[last_name]', with: '')
+      fill_in('parent[email]', with: 'bob@bob.com')
+      fill_in('parent[password]', with: 'bob123')
+      click_button('Submit')
+      expect(page).to have_content("Last name can't be blank")
+    end
+
+    it 'checks to ensure that the user is registering with a unique password' do
+      visit('/parents/new')
+      fill_in('parent[first_name]', with: 'Spongebob')
+      fill_in('parent[last_name]', with: 'Squarepants')
+      fill_in('parent[email]', with: 'bob@bob.com')
+      fill_in('parent[password]', with: 'bob123')
+      click_button('Submit')
+      visit('/parents/new')
+      fill_in('parent[first_name]', with: 'Spongebob')
+      fill_in('parent[last_name]', with: 'Squarepants')
+      fill_in('parent[email]', with: 'bob@bob.com')
+      fill_in('parent[password]', with: 'bob123')
+      click_button('Submit')
+      expect(page).to have_content('Email has already been taken')
+    end
   end
 
 end
