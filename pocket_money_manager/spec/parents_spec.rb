@@ -1,4 +1,5 @@
 require "rails_helper"
+require "sign_up_helper"
 
 feature 'User can sign in' do
   context 'User is not signed in' do
@@ -38,12 +39,7 @@ feature 'User can sign in' do
     end
 
     it 'checks to ensure that the user is registering with a unique password' do
-      visit('/parents/new')
-      fill_in('parent[first_name]', with: 'Spongebob')
-      fill_in('parent[last_name]', with: 'Squarepants')
-      fill_in('parent[email]', with: 'bob@bob.com')
-      fill_in('parent[password]', with: 'bob123')
-      click_button('Submit')
+      sign_up
       visit('/parents/new')
       fill_in('parent[first_name]', with: 'Spongebob')
       fill_in('parent[last_name]', with: 'Squarepants')
