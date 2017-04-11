@@ -9,7 +9,7 @@ feature 'User can sign in' do
     end
 
     it 'takes user to a registration page' do
-      visit '/parents/new'
+      visit '/'
       click_link 'Sign up'
       expect(page).to have_content('First name')
       expect(page).to have_content('Last name')
