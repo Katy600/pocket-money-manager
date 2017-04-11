@@ -2,7 +2,7 @@ class LoginController < ApplicationController
   def menu
     @username = session[:first_name]
   end
-  
+
   def index
   end
 
@@ -12,7 +12,6 @@ class LoginController < ApplicationController
  def attempt_login
    if params[:email].present? && params[:password].present?
      found_user = Parent.where(:email => params[:email]).first
-     p found_user
      if found_user
        authorised_user = found_user.authenticate(params[:password])
      end

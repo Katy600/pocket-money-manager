@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'children/index'
+
+  get 'children/new'
+
+  get 'children/create'
+
   root 'login#index'
   get 'login/index'
   get 'login/login'
