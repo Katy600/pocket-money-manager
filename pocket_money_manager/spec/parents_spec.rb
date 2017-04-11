@@ -57,6 +57,13 @@ feature 'User can sign in' do
       click_button('Log In')
       expect(page).to have_content('You are now logged in')
     end
+
+    it 'allows user to sign out' do
+      sign_up
+      sign_in
+      click_link('Logout')
+      expect(page).to have_content('User logged out')
+    end
   end
 
   context 'Parent is able to complete child related actions' do
@@ -65,6 +72,18 @@ feature 'User can sign in' do
       sign_in
       expect(page).to have_link('Add an account for your child')
     end
+
+    it 'takes parents to a child registration page' do
+      sign_up
+      sign_in
+      click_link 'Add an account for your child'
+      expect(page).to have_content('Name')
+      expect(page).to have_content('User name')
+      expect(page).to have_content('Balance')
+      expect(page).to have_content('Password')
+      expect(page).to have_button('Submit')
+    end
+
 
   end
 
