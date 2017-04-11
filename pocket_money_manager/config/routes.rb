@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  get 'children/index'
-
-  get 'children/new'
-
-  get 'children/create'
 
   root 'login#index'
   get 'login/index'
@@ -15,4 +10,8 @@ Rails.application.routes.draw do
   # root "parents#index"
   get 'parents' => 'parents#index'
   resources :parents
+
+  get 'children' => 'children#index'
+  resources :children
+  
 end

@@ -11,7 +11,7 @@ class ChildrenController < ApplicationController
     @child = Child.new(child_params)
     if @child.save
       flash[:notice] = "You've created a new account for #{@child.name}"
-      redirect_to(parent_path)
+      redirect_to(parents_path)
     else
       render('new')
     end
@@ -20,7 +20,7 @@ class ChildrenController < ApplicationController
   private
 
   def child_params
-    params.require(:child).permit(:name, :user_name, :balance, :password)
+    params.require(:child).permit(:name, :username, :balance, :password)
   end
 
 end

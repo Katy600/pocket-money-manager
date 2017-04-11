@@ -78,12 +78,53 @@ feature 'User can sign in' do
       sign_in
       click_link 'Add an account for your child'
       expect(page).to have_content('Name')
-      expect(page).to have_content('User name')
+      expect(page).to have_content('Username')
       expect(page).to have_content('Balance')
       expect(page).to have_content('Password')
       expect(page).to have_button('Submit')
     end
 
+    it 'allows a parent to add an account for your child' do
+      sign_up
+      sign_in
+      click_link 'Add an account for your child'
+      fill_in('child[name]', with: 'timmy')
+      fill_in('child[username]', with: 'timmy')
+      fill_in('child[balance]', with: '10')
+      fill_in('child[password]', with: 'timmy')
+      click_button('Submit')
+      expect(page).to have_content("You've created a new account for timmy")
+    end
+
+    it 'will not save a child to the database if there are empty fields in the registration form' do
+      sign_up
+      sign_in
+      click_link 'Add an account for your child'
+      fill_in('child[name]', with: 'timmy')
+      fill_in('child[username]', with: '')
+      fill_in('child[balance]', with: '10')
+      fill_in('child[password]', with: 'timmy')
+      click_button('Submit')
+      expect(page).to have_content("Username can't be blank")
+    end
+
+    it 'checks to ensure that the user is registering with a unique password' do
+      sign_up
+      sign_in
+      click_link 'Add an account for your child'
+      fill_in('child[name]', with: 'timmy')
+      fill_in('child[username]', with: 'timmy')
+      fill_in('child[balance]', with: '10')
+      fill_in('child[password]', with: 'timmy')
+      click_button('Submit')
+      click_link 'Add an account for your child'
+      fill_in('child[name]', with: 'timmy')
+      fill_in('child[username]', with: 'timmy')
+      fill_in('child[balance]', with: '10')
+      fill_in('child[password]', with: 'timmy')
+      click_button('Submit')
+      expect(page).to have_content('Username has already been taken')
+    end
 
   end
 
