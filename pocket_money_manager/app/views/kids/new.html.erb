@@ -1,16 +1,18 @@
-<% if @child.errors.any? %>
+<%= link_to("Back to main menu", parents_path(:parent_id => @parent.id)), :class => 'back-link') %>
+
+<% if @kid.errors.any? %>
   <div id="error_explanation">
-    <h2><%= pluralize(@child.errors.count, "error") %> prevented your registration from being completed:</h2>
+    <h2><%= pluralize(@kid.errors.count, "error") %> prevented your registration from being completed:</h2>
 
     <ul>
-    <% @child.errors.full_messages.each do |msg| %>
+    <% @kid.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
     </ul>
   </div>
 <% end %>
 
-<%= form_for(@child) do
+<%= form_for(@kid, :url => kids_path(:parent_id => @parent.id)) do
     |f| %>
 
 <table>

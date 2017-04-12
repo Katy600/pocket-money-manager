@@ -20,7 +20,7 @@ class LoginController < ApplicationController
      session[:parent_id] = authorised_user.id
      session[:email] = authorised_user.email
      flash[:notice] = "You are now logged in"
-     redirect_to(parents_path)
+     redirect_to(parent_path)
    else
      flash.now[:notice] = "Invalid username/password combination."
      render('login')

@@ -66,17 +66,17 @@ feature 'User can sign in' do
     end
   end
 
-  context 'Parent is able to complete child related actions' do
-    it 'Checks there is a link to allow a parent to add a child to their account' do
+  context 'Parent is able to complete kid related actions' do
+    it 'Checks there is a link to allow a parent to add a kid to their account' do
       sign_up
       sign_in
-      expect(page).to have_link('Add an account for your child')
+      expect(page).to have_link('Add an account for your kid')
     end
 
-    it 'takes parents to a child registration page' do
+    it 'takes parents to a kid registration page' do
       sign_up
       sign_in
-      click_link 'Add an account for your child'
+      click_link 'Add an account for your kid'
       expect(page).to have_content('Name')
       expect(page).to have_content('Username')
       expect(page).to have_content('Balance')
@@ -84,26 +84,26 @@ feature 'User can sign in' do
       expect(page).to have_button('Submit')
     end
 
-    it 'allows a parent to add an account for your child' do
+    it 'allows a parent to add an account for your kid' do
       sign_up
       sign_in
-      click_link 'Add an account for your child'
-      fill_in('child[name]', with: 'timmy')
-      fill_in('child[username]', with: 'timmy')
-      fill_in('child[balance]', with: '10')
-      fill_in('child[password]', with: 'timmy')
+      click_link 'Add an account for your kid'
+      fill_in('kid[name]', with: 'timmy')
+      fill_in('kid[username]', with: 'timmy')
+      fill_in('kid[balance]', with: '10')
+      fill_in('kid[password]', with: 'timmy')
       click_button('Submit')
       expect(page).to have_content("You've created a new account for timmy")
     end
 
-    it 'will not save a child to the database if there are empty fields in the registration form' do
+    it 'will not save a kid to the database if there are empty fields in the registration form' do
       sign_up
       sign_in
-      click_link 'Add an account for your child'
-      fill_in('child[name]', with: 'timmy')
-      fill_in('child[username]', with: '')
-      fill_in('child[balance]', with: '10')
-      fill_in('child[password]', with: 'timmy')
+      click_link 'Add an account for your kid'
+      fill_in('kid[name]', with: 'timmy')
+      fill_in('kid[username]', with: '')
+      fill_in('kid[balance]', with: '10')
+      fill_in('kid[password]', with: 'timmy')
       click_button('Submit')
       expect(page).to have_content("Username can't be blank")
     end
@@ -111,17 +111,17 @@ feature 'User can sign in' do
     it 'checks to ensure that the user is registering with a unique password' do
       sign_up
       sign_in
-      click_link 'Add an account for your child'
-      fill_in('child[name]', with: 'timmy')
-      fill_in('child[username]', with: 'timmy')
-      fill_in('child[balance]', with: '10')
-      fill_in('child[password]', with: 'timmy')
+      click_link 'Add an account for your kid'
+      fill_in('kid[name]', with: 'timmy')
+      fill_in('kid[username]', with: 'timmy')
+      fill_in('kid[balance]', with: '10')
+      fill_in('kid[password]', with: 'timmy')
       click_button('Submit')
-      click_link 'Add an account for your child'
-      fill_in('child[name]', with: 'timmy')
-      fill_in('child[username]', with: 'timmy')
-      fill_in('child[balance]', with: '10')
-      fill_in('child[password]', with: 'timmy')
+      click_link 'Add an account for your kid'
+      fill_in('kid[name]', with: 'timmy')
+      fill_in('kid[username]', with: 'timmy')
+      fill_in('kid[balance]', with: '10')
+      fill_in('kid[password]', with: 'timmy')
       click_button('Submit')
       expect(page).to have_content('Username has already been taken')
     end

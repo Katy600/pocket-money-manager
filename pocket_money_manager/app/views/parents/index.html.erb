@@ -1,2 +1,5 @@
-<%= link_to("Add an account for your child", new_child_path, :class => 'action new') %></br>
+<%= link_to("Add an account for your kid", new_kid_path(:parent_id => @parent.id), :class => 'action new') %></br>
+
+<%= link_to("View kid(ren)", kids_path(:parent_id => @parent.id), :class => 'action show') %></br>
+
 <%= link_to("Logout", login_logout_path) %>

@@ -10,16 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170411134146) do
+ActiveRecord::Schema.define(version: 20170412072430) do
 
-  create_table "children", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "kids", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",            limit: 25
     t.string   "username",        limit: 50
     t.integer  "balance",                    default: 0
     t.string   "password_digest"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.index ["username"], name: "index_children_on_username", using: :btree
+    t.integer  "parent_id"
+    t.index ["parent_id"], name: "index_kids_on_parent_id", using: :btree
+    t.index ["username"], name: "index_kids_on_username", using: :btree
   end
 
   create_table "parents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -32,4 +34,5 @@ ActiveRecord::Schema.define(version: 20170411134146) do
     t.index ["email"], name: "index_parents_on_email", using: :btree
   end
 
+  add_foreign_key "kids", "parents"
 end

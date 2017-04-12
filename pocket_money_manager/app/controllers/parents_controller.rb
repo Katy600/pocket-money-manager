@@ -10,11 +10,15 @@ class ParentsController < ApplicationController
     @parent = Parent.new
   end
 
+  def show
+    @parent = Parent.find(params[:id])
+  end
+
   def create
     @parent = Parent.new(parent_params)
     if @parent.save
       flash[:notice] = "Your account has been created"
-      redirect_to(login_login_path)
+      redirect_to(parents_path)
     else
       render('new')
     end

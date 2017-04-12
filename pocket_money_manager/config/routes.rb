@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'parents' => 'parents#index'
   resources :parents
 
-  get 'children' => 'children#index'
-  resources :children
+  get 'kids' => 'kids#index'
+  resources :kids
   
 end
