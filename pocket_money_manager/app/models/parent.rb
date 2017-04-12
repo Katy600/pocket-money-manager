@@ -1,4 +1,5 @@
 class Parent < ApplicationRecord
+  has_many :children
   has_secure_password
   validates :first_name, :presence => true,
                          :length => { :maximum => 50 }

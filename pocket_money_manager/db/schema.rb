@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170411134146) do
+ActiveRecord::Schema.define(version: 20170411144450) do
 
   create_table "children", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",            limit: 25
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20170411134146) do
     t.string   "password_digest"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.integer  "parent_id"
+    t.index ["parent_id"], name: "index_children_on_parent_id", using: :btree
     t.index ["username"], name: "index_children_on_username", using: :btree
   end
 
@@ -32,4 +34,5 @@ ActiveRecord::Schema.define(version: 20170411134146) do
     t.index ["email"], name: "index_parents_on_email", using: :btree
   end
 
+  add_foreign_key "children", "parents"
 end

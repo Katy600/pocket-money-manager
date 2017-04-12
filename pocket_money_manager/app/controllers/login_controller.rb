@@ -11,16 +11,17 @@ class LoginController < ApplicationController
 
  def attempt_login
    if params[:email].present? && params[:password].present?
-     found_user = Parent.where(:email => params[:email]).first
-     if found_user
-       authorised_user = found_user.authenticate(params[:password])
+     found_parent = Parent.where(:email => params[:email]).first
+     if found_parent
+       authorised_parent = found_parent.authenticate(params[:password])
      end
    end
-   if authorised_user
-     session[:parent_id] = authorised_user.id
-     session[:email] = authorised_user.email
+   if authorised_parent
+     session[:parent_id] = authorised_parent.id
+     p session[:parent_id]
+     session[:email] = authorised_parent.email
      flash[:notice] = "You are now logged in"
-     redirect_to(parents_path)
+     redirect_to(parent_path)
    else
      flash.now[:notice] = "Invalid username/password combination."
      render('login')
